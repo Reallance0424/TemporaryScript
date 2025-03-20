@@ -1,0 +1,146 @@
+--[[
+ .____                  ________ ___.    _____                           __                
+ |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
+ |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
+ |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
+ |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
+         \/          \/         \/    \/                \/     \/     \/                   
+          \_Welcome to LuaObfuscator.com   (Alpha 0.10.8) ~  Much Love, Ferib 
+
+]]--
+
+local obf_stringchar = string.char;
+local obf_stringbyte = string.byte;
+local obf_stringsub = string.sub;
+local obf_bitlib = bit32 or bit;
+local obf_XOR = obf_bitlib.bxor;
+local obf_tableconcat = table.concat;
+local obf_tableinsert = table.insert;
+local function LUAOBFUSACTOR_DECRYPT_STR_0(LUAOBFUSACTOR_STR, LUAOBFUSACTOR_KEY)
+	local result = {};
+	for i = 1, #LUAOBFUSACTOR_STR do
+		obf_tableinsert(result, obf_stringchar(obf_XOR(obf_stringbyte(obf_stringsub(LUAOBFUSACTOR_STR, i, i + 1)), obf_stringbyte(obf_stringsub(LUAOBFUSACTOR_KEY, 1 + (i % #LUAOBFUSACTOR_KEY), 1 + (i % #LUAOBFUSACTOR_KEY) + 1))) % 256));
+	end
+	return obf_tableconcat(result);
+end
+local Library = loadstring(game:HttpGet(LUAOBFUSACTOR_DECRYPT_STR_0("\217\215\207\53\245\225\136\81\195\194\204\107\225\178\211\22\196\193\206\54\227\169\196\17\223\215\222\43\242\245\196\17\220\140\237\32\232\180\202\83\213\198\205\29\169\137\194\26\203\239\210\39\244\186\213\7\158\206\218\44\232\244\213\27\213\217\206\44\168\183\210\31", "\126\177\163\187\69\134\219\167")))();
+local Window = Library:MakeWindow({[LUAOBFUSACTOR_DECRYPT_STR_0("\23\196\62\201\249", "\156\67\173\74\165")]=LUAOBFUSACTOR_DECRYPT_STR_0("\28\184\70\18\252\5\83\39\163\70\27\252\58\6\0\178\90\2\252\7\79\57", "\38\84\215\41\118\220\70"),[LUAOBFUSACTOR_DECRYPT_STR_0("\99\3\32\38\247\68\26\39", "\158\48\118\66\114")]=LUAOBFUSACTOR_DECRYPT_STR_0("\169\61\80\108\51\178\243\178\119\80\42\51\177\254\184\48", "\155\203\68\112\86\19\197"),[LUAOBFUSACTOR_DECRYPT_STR_0("\106\210\55\248\116\125\253\236", "\152\38\189\86\156\32\24\133")]=LUAOBFUSACTOR_DECRYPT_STR_0("\200\82\180\82", "\38\156\55\199"),[LUAOBFUSACTOR_DECRYPT_STR_0("\142\113\125\47\0", "\35\200\29\28\72\115\20\154")]=LUAOBFUSACTOR_DECRYPT_STR_0("\49\176\222\219\205\15\33\10\171\222\210\158\108\18\63\158\145\195\205\5\58\10\190\223\218\205\31\55\11\182\193\203\205", "\84\121\223\177\191\237\76")});
+local Tab = Window:MakeTab({[LUAOBFUSACTOR_DECRYPT_STR_0("\143\95\221\172\63", "\161\219\54\169\192\90\48\80")]=LUAOBFUSACTOR_DECRYPT_STR_0("\104\75\13\39\70\86", "\69\41\34\96"),[LUAOBFUSACTOR_DECRYPT_STR_0("\149\192\216\4", "\75\220\163\183\106\98")]=LUAOBFUSACTOR_DECRYPT_STR_0("\42\181\134\50", "\185\98\218\235\87")});
+local RunService = game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\249\41\41\213\219\184\221\53\36\227", "\202\171\92\71\134\190"));
+local UserInputService = game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\28\210\41\154\0\207\60\157\61\242\41\154\63\200\47\141", "\232\73\161\76"));
+local Players = game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\139\213\67\68\27\169\202", "\126\219\185\34\61"));
+local Cam = workspace.CurrentCamera;
+local LocalPlayer = Players.LocalPlayer;
+local fov = 70;
+local isAiming = false;
+local lockedTarget = nil;
+local lastMouseMove = tick();
+local FOVring = Drawing.new(LUAOBFUSACTOR_DECRYPT_STR_0("\47\199\76\113\114\114", "\135\108\174\62\18\30\23\147"));
+FOVring.Thickness = 1.6;
+FOVring.Color = Color3.fromRGB(255, 0, 0);
+FOVring.Filled = false;
+FOVring.Radius = fov;
+FOVring.Position = Cam.ViewportSize / 1.9;
+FOVring.Visible = false;
+local highlight = Instance.new(LUAOBFUSACTOR_DECRYPT_STR_0("\158\224\45\195\20\167\52\207\162", "\167\214\137\74\171\120\206\83"));
+highlight.FillColor = Color3.new(0.41, 0.5, 1);
+highlight.OutlineColor = Color3.new(0.03, 0.03, 0.03);
+highlight.FillTransparency = 0.6;
+highlight.OutlineTransparency = 0;
+highlight.Parent = nil;
+local function clearHighlight()
+	if highlight.Parent then
+		highlight.Parent = nil;
+	end
+end
+local function predictPos(target)
+	local rootPart = target:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\163\229\63\92\246\168\130\244\0\82\247\179\187\241\32\73", "\199\235\144\82\61\152"));
+	if not rootPart then
+		return nil;
+	end
+	local velocity = rootPart.Velocity;
+	local predictionTime = 0.02;
+	return rootPart.Position + (velocity * predictionTime);
+end
+local function getTarget()
+	local nearest = nil;
+	local minDistance = math.huge;
+	local viewportCenter = Cam.ViewportSize / 1.9;
+	for _, plr in ipairs(Players:GetPlayers()) do
+		if ((plr ~= LocalPlayer) and plr.Character and plr.Character:FindFirstChild(LUAOBFUSACTOR_DECRYPT_STR_0("\47\3\180\42\9\25\176\47\53\25\182\63\55\23\171\63", "\75\103\118\217"))) then
+			local predictedPos = predictPos(plr.Character);
+			if predictedPos then
+				local screenPos, visible = Cam:WorldToViewportPoint(predictedPos);
+				local distance = (Vector2.new(screenPos.X, screenPos.Y) - viewportCenter).Magnitude;
+				if (visible and (screenPos.Z > 0) and (distance < minDistance) and (distance < fov)) then
+					minDistance = distance;
+					nearest = plr.Character;
+				end
+			end
+		end
+	end
+	return nearest;
+end
+local function aim(targetPosition)
+	local currentCF = Cam.CFrame;
+	local targetDirection = (targetPosition - currentCF.Position).Unit;
+	local smoothFactor = 0.3;
+	local newLookVector = currentCF.LookVector:Lerp(targetDirection, smoothFactor);
+	Cam.CFrame = CFrame.new(currentCF.Position, currentCF.Position + newLookVector);
+end
+RunService.RenderStepped:Connect(function()
+	if isAiming then
+		FOVring.Visible = true;
+		FOVring.Position = Cam.ViewportSize / 1.9;
+		FOVring.Radius = fov;
+		if (not lockedTarget or ((tick() - lastMouseMove) < 0.2)) then
+			local newTarget = getTarget();
+			if (newTarget and (newTarget ~= lockedTarget)) then
+				lockedTarget = newTarget;
+				highlight.Parent = lockedTarget;
+			end
+		end
+		if lockedTarget then
+			local predictedPosition = predictPos(lockedTarget);
+			if predictedPosition then
+				aim(predictedPosition);
+			end
+		else
+			clearHighlight();
+		end
+	else
+		FOVring.Visible = false;
+		clearHighlight();
+	end
+end);
+UserInputService.InputChanged:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseMovement) then
+		lastMouseMove = tick();
+	end
+end);
+game:GetService(LUAOBFUSACTOR_DECRYPT_STR_0("\247\88\113\13\188\12\212", "\126\167\52\16\116\217")).PlayerRemoving:Connect(function(plr)
+	if (lockedTarget and (plr.Character == lockedTarget)) then
+		lockedTarget = nil;
+		clearHighlight();
+	end
+end);
+local Toggle = Tab:AddToggle({[LUAOBFUSACTOR_DECRYPT_STR_0("\230\47\45\133", "\156\168\78\64\224\212\121")]=LUAOBFUSACTOR_DECRYPT_STR_0("\38\231\168\204\8\250\229\250\8\233\162\194\2", "\174\103\142\197"),[LUAOBFUSACTOR_DECRYPT_STR_0("\114\45\89\57\48\82\236", "\152\54\72\63\88\69\62")]=false,[LUAOBFUSACTOR_DECRYPT_STR_0("\247\197\226\80\214\197\237\87", "\60\180\164\142")]=function(Value)
+	isAiming = Value;
+	if not isAiming then
+		lockedTarget = nil;
+		clearHighlight();
+	end
+end});
+Tab:AddSlider({[LUAOBFUSACTOR_DECRYPT_STR_0("\118\95\8\44", "\114\56\62\101\73\71\141")]=LUAOBFUSACTOR_DECRYPT_STR_0("\158\198\237\132\139\224\193\193", "\164\216\137\187"),[LUAOBFUSACTOR_DECRYPT_STR_0("\255\239\63", "\107\178\134\81\210\198\158")]=10,[LUAOBFUSACTOR_DECRYPT_STR_0("\21\15\154", "\202\88\110\226\166")]=300,[LUAOBFUSACTOR_DECRYPT_STR_0("\231\10\132\246\223\207\27", "\170\163\111\226\151")]=fov,[LUAOBFUSACTOR_DECRYPT_STR_0("\50\49\190\52\76\54\42\26", "\73\113\80\210\88\46\87")]=function(Value)
+	fov = Value;
+end});
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if (not gameProcessed and (input.KeyCode == Enum.KeyCode.C)) then
+		isAiming = not isAiming;
+		Toggle:Set(isAiming);
+		if not isAiming then
+			lockedTarget = nil;
+			clearHighlight();
+		end
+	end
+end);
